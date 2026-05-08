@@ -5,12 +5,22 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
 public class TaskService {
 
-    List<Task> tasks = new ArrayList<>();
+    private final List<Task> tasks = new ArrayList<>();
+
+    public List<Task> getTasks(String priority, String title, String limitDate) {
+        return tasks.stream()
+                .filter(task -> priority == null || task.getPriority().equalsIgnoreCase(priority))
+                .filter(task -> title == null || task.getTitle().toLowerCase().contains(title.toLowerCase()))
+                .filter(task -> limitDate == null || task.getLimitDate().equals(limitDate))
+                .collect(Collectors.toList());
+    }
+
 
 
     private Long idTask = 1L;
