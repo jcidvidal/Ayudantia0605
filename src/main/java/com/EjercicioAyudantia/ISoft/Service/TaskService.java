@@ -5,16 +5,19 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
+
 
 @Service
 public class TaskService {
 
     List<Task> tasks = new ArrayList<>();
 
-    private final AtomicLong idCounter = new AtomicLong(1);
+
+    private Long idTask = 1L;
+
     public Task createTask(Task task) {
-        task.setId(idCounter.getAndIncrement());
+        idTask ++;
+        task.setId(idTask);
         task.setCompleted(false);
         tasks.add(task);
         return task;

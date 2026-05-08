@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1.7
 
-FROM maven:3.9.15-eclipse-temurin-17 AS build
+FROM maven:3.9.15-eclipse-temurin-21 AS build
 WORKDIR /workspace
 
 COPY pom.xml .
@@ -11,7 +11,7 @@ COPY src ./src
 
 RUN mvn -B clean package -DskipTests
 
-FROM eclipse-temurin:17-jre-alpine
+FROM eclipse-temurin:21-jre-alpine
 
 RUN addgroup -S spring && adduser -S spring -G spring
 
