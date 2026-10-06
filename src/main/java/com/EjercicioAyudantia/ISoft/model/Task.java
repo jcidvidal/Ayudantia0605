@@ -9,9 +9,10 @@ import lombok.NoArgsConstructor;
 @Data
 public class Task {
 
-    private long id;
+    private Long id;
     private String titulo;
     private String prioridad;
     private String fechaLimite;
-    private boolean completada;
+    private boolean completada = false;
+
 }
